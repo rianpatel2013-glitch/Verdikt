@@ -42,7 +42,3 @@ src/
     ui/            shadcn primitives
   styles.css       Tailwind v4 + design tokens (light + dark)
 ```
-
-## License
-
-MIT
