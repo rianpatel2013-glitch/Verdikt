@@ -17,3 +17,5 @@ dist-ssr
 .lovable/
 .nitro
 *.local
+.vercel
+.env*
