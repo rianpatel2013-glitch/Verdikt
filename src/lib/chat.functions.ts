@@ -148,7 +148,7 @@ export const getChatMessages = createServerFn({ method: "GET" })
 // ─── Send a message (new chat or follow-up) ─────────────────────────────────
 
 const sendMessageInput = z.object({
-    prompt: z.string().min(1),
+    prompt: z.string(),
     chatId: z.string().uuid().nullable(),
     userEmail: z.string().email().optional(),
     image: z.string().optional(),

@@ -403,10 +403,10 @@ function ChatThread({ messages, loading, onSubmit }: { messages: ChatMessage[]; 
           {messages.map((m, i) =>
             m.role === "user" ? (
               <motion.div key={i} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="flex justify-end">
-                <div className="max-w-[80%] rounded-2xl bg-primary text-primary-foreground px-4 py-3">
-                  {m.image && <img src={m.image} alt="" className="mb-2 max-h-48 rounded-md" />}
-                  {m.text && <div className="text-sm whitespace-pre-wrap">{m.text}</div>}
-                </div>
+              <div className="max-w-[80%] rounded-2xl bg-primary text-primary-foreground px-4 py-3">
+                {m.image && <img src={m.image} alt="" className="mb-2 max-h-48 rounded-md" />}
+                {m.text && <div className="text-base whitespace-pre-wrap">{m.text}</div>}
+              </div>
               </motion.div>
             ) : (
               <motion.div key={i} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="flex justify-start">
