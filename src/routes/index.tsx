@@ -415,9 +415,9 @@ function ChatThread({ messages, loading, onSubmit }: { messages: ChatMessage[]; 
                     <ResultCard report={m.report} />
                   ) : (
                     <div className="rounded-2xl border border-border bg-card p-5">
-                      <div className="prose prose-sm dark:prose-invert max-w-none">
-                        <ReactMarkdown>{m.text}</ReactMarkdown>
-                      </div>
+                    <div className="prose prose-sm dark:prose-invert max-w-none prose-p:mb-3 prose-li:mb-2 prose-strong:block prose-strong:mt-3">
+                      <ReactMarkdown>{m.text}</ReactMarkdown>
+                    </div>
                       {m.sources && m.sources.length > 0 && (
                         <div className="mt-4 pt-4 border-t border-border/50">
                           <h4 className="text-xs font-semibold text-muted-foreground mb-2 uppercase">Sources</h4>
