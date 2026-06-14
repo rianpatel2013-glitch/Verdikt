@@ -43,10 +43,6 @@ src/
   styles.css       Tailwind v4 + design tokens (light + dark)
 ```
 
-## Theming
-
-Theme tokens live in `src/styles.css` under `:root` (dark editorial — default) and `.light` (light palette). Toggle by adding/removing the `light` class on `<html>`. The user menu in the sidebar exposes this as a Personalization control.
-
 ## License
 
 MIT
