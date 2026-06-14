@@ -1,6 +1,6 @@
 # Verdikt
 
-Link: https://verdikt.product-review.workers.dev
+[Website-Link]https://verdikt.product-review.workers.dev
 
 Verdikt takes a product name or photo and returns an unbiase, well-reasearched verdict (Buy / Consider / Skip) with a score, pros, and cons. Then it will help you answer any follow up questions too. Built as a chat-style interface inspired by popular AIs like ChatGPT. 
 
@@ -15,13 +15,19 @@ Verdikt takes a product name or photo and returns an unbiase, well-reasearched v
 
 ## Tech stack
 
-- [TanStack Start](https://tanstack.com/start) v1 (React 19 + Vite 7)
+- [Lovable](https://lovable.dev) — AI full-stack app builder used to scaffold and build the project
+- [TanStack Start](https://tanstack.com/start) v1 (React 19 + Vite 7) — SSR framework
+- [TanStack Router](https://tanstack.com/router) — file-based routing
+- [Nitro](https://nitro.unjs.io) — server engine, deployed on Vercel
 - Tailwind CSS v4 with semantic design tokens (`src/styles.css`)
-- shadcn/ui components
-- Motion (Framer Motion) for transitions
+- shadcn/ui components (Radix UI primitives)
+- Motion (Framer Motion) for animations and transitions
 - Lucide icons
-- Gemini to review the products
-- Supabase for storing the chats
+- [Google Gemini 2.5 Flash](https://deepmind.google/technologies/gemini/) with Google Search grounding — AI product analysis
+- [Supabase](https://supabase.com) — PostgreSQL database for chat/message history and Auth for user accounts
+- Zod for schema validation
+- React Hook Form for form handling
+- react-markdown for rendering AI responses
 
 ## Run on your local device
 

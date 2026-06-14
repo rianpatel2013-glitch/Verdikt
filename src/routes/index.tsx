@@ -176,7 +176,12 @@ function Index() {
             </motion.div>
           ) : view === "search" ? (
             <motion.div key="search" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} transition={{ duration: 0.3 }}>
-              <SearchChats chats={filteredChats} onSelectChat={(id) => { openChat(id); setView("chat"); }} />
+              <SearchChats
+                chats={filteredChats}
+                onSelectChat={(id) => { openChat(id); setView("chat"); }}
+                searchQuery={searchQuery}
+                setSearchQuery={setSearchQuery}
+              />
             </motion.div>
           ) : messages.length === 0 ? (
             <motion.div key="home" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} transition={{ duration: 0.3 }}>
@@ -403,10 +408,10 @@ function ChatThread({ messages, loading, onSubmit }: { messages: ChatMessage[]; 
           {messages.map((m, i) =>
             m.role === "user" ? (
               <motion.div key={i} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="flex justify-end">
-              <div className="max-w-[80%] rounded-2xl bg-primary text-primary-foreground px-4 py-3">
-                {m.image && <img src={m.image} alt="" className="mb-2 max-h-48 rounded-md" />}
-                {m.text && <div className="text-base whitespace-pre-wrap">{m.text}</div>}
-              </div>
+                <div className="max-w-[80%] rounded-2xl bg-primary text-primary-foreground px-4 py-3">
+                  {m.image && <img src={m.image} alt="" className="mb-2 max-h-48 rounded-md" />}
+                  {m.text && <div className="text-base whitespace-pre-wrap">{m.text}</div>}
+                </div>
               </motion.div>
             ) : (
               <motion.div key={i} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="flex justify-start">
@@ -415,9 +420,9 @@ function ChatThread({ messages, loading, onSubmit }: { messages: ChatMessage[]; 
                     <ResultCard report={m.report} />
                   ) : (
                     <div className="rounded-2xl border border-border bg-card p-5">
-                    <div className="prose prose-sm dark:prose-invert max-w-none prose-p:mb-3 prose-li:mb-2 prose-strong:block prose-strong:mt-3">
-                      <ReactMarkdown>{m.text}</ReactMarkdown>
-                    </div>
+                      <div className="prose prose-sm dark:prose-invert max-w-none prose-p:mb-3 prose-li:mb-2 prose-strong:block prose-strong:mt-3">
+                        <ReactMarkdown>{m.text}</ReactMarkdown>
+                      </div>
                       {m.sources && m.sources.length > 0 && (
                         <div className="mt-4 pt-4 border-t border-border/50">
                           <h4 className="text-xs font-semibold text-muted-foreground mb-2 uppercase">Sources</h4>
@@ -669,11 +674,27 @@ function OurPurpose() {
   );
 }
 
-function SearchChats({ chats, onSelectChat }: { chats: ChatSummary[]; onSelectChat: (id: string) => void }) {
+function SearchChats({ chats, onSelectChat, searchQuery, setSearchQuery }: {
+  chats: ChatSummary[];
+  onSelectChat: (id: string) => void;
+  searchQuery: string;
+  setSearchQuery: (q: string) => void;
+}) {
   return (
     <section className="px-4 sm:px-6 pt-16 sm:pt-24 pb-12">
       <div className="max-w-3xl mx-auto">
-        <h1 className="font-display text-4xl sm:text-5xl tracking-tight mb-8">Your chats</h1>
+        <h1 className="font-display text-4xl sm:text-5xl tracking-tight mb-6">Your chats</h1>
+
+        <div className="relative mb-8">
+          <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+          <input
+            type="text"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            placeholder="Search chats..."
+            className="w-full bg-card border border-border rounded-lg pl-11 pr-4 py-3 text-sm placeholder:text-muted-foreground/60 focus:outline-none focus:border-primary transition-colors"
+          />
+        </div>
 
         <div className="grid gap-4">
           {chats.length === 0 ? (
